@@ -9,10 +9,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'davidhalter/jedi-vim'
+Plug 'tpope/vim-commentary'
 " Initialize plugin system
 call plug#end()
-map <F2> :NERDTreeToggle<CR>
 
+" custom shortcuts
+map <F2> :NERDTreeToggle<CR>
 " color scheme seoul256
 let g:seoul256_background = 234
 colo seoul256
@@ -22,3 +24,10 @@ let g:ale_fixers = {
 \ "*": ['remove_trailing_lines','trim_whitespaces'],
 \ 'python':['black']
 \}
+
+set number
+
+" jedi-vim config
+let g:jedi#popup_on_dot = 0
+
+
