@@ -13,8 +13,12 @@ Plug 'tpope/vim-commentary'
 " Initialize plugin system
 call plug#end()
 
-" custom shortcuts
+" ---------------------custom shortcuts --------------
+
+" NerdTree
 map <F2> :NERDTreeToggle<CR>
+
+
 " color scheme seoul256
 let g:seoul256_background = 234
 colo seoul256
@@ -29,5 +33,21 @@ set number
 
 " jedi-vim config
 let g:jedi#popup_on_dot = 0
+let g:jedi#show_call_signatures=1
 
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
 
+" Cancel default behavior of d, D, c, C
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
+
+" Duplicate line
+nnoremap <C-d> yyp$ 
