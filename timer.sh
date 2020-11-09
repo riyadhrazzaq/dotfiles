@@ -25,7 +25,7 @@ while [ 1 ]; do
 	elif (( $chromium_count > 0  )); then
 		chromium 'web.whatsapp.com'
 	else
-		firefox -new-tab web.whatsapp.com
+		firefox web.whatsapp.com
 	fi
 	loop=$((loop + 1))
 done

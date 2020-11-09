@@ -8,12 +8,16 @@ Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-commentary'
+Plug 'mattn/emmet-vim'
+Plug 'ycm-core/YouCompleteMe'
 " Initialize plugin system
 call plug#end()
 
 " ---------------------custom shortcuts --------------
+
+au FileType html let b:AutoPairs = AutoPairsDefine({'<!--' : '-->', '{%':'%}'})
+
 
 " NerdTree
 map <F2> :NERDTreeToggle<CR>
@@ -48,6 +52,3 @@ nnoremap c "_c
 vnoremap c "_c
 nnoremap C "_C
 vnoremap C "_C
-
-" Duplicate line
-nnoremap <C-d> yyp$ 
