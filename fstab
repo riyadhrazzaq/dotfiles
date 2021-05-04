@@ -1,11 +1,15 @@
-# /etc/fstab: static file system information.
+
 #
-# Use 'blkid' to print the universally unique identifier for a device; this may
-# be used with UUID= as a more robust way to name devices that works even if
-# disks are added and removed. See fstab(5).
+# /etc/fstab
+# Created by anaconda on Wed Mar 17 18:36:31 2021
 #
-# <file system>             <mount point>  <type>  <options>  <dump>  <pass>
-UUID=daf64dcb-d71a-48ad-af3c-1df281415ee0 /              ext4    defaults,noatime 0 1
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+UUID=36731033-83e8-4735-8669-d5b0cf791bf0 /                       ext4    defaults        1 1
+UUID=15c6cba7-717d-4783-9e81-e6f36dfcd3e4 /boot                   ext4    defaults        1 2
 UUID=7AF4999FF4995DE7 /home/potato/strange ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
 UUID=DA16A02016A0001D /home/potato/multimedia ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
-
