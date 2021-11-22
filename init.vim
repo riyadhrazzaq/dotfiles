@@ -1,24 +1,40 @@
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-surround'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'mattn/emmet-vim'
-Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
+Plug 'tpope/vim-surround'
 Plug 'psf/black', { 'branch': 'stable' }
-Plug 'ap/vim-css-color'
+" only for code-jump
+Plug 'davidhalter/jedi-vim'
+Plug 'tmhedberg/SimpylFold'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'morhetz/gruvbox'
 call plug#end()
 
+" ---- NVIM DEFAULTS ------
+"  copy-paste with ctrl+c, ctrl+v, cut with ctrl+x
+vnoremap <C-c> "+y
+vnoremap <C-v> "+p
+nnoremap <C-v> "+p
+vnoremap <d> "_d
+vnoremap <C-x> "+x
 
-" nvim defaults
-set clipboard+=unnamedplus
-set nohlsearch " disable highlights after exiting search
+" disable highlights after exiting search
+set nohlsearch
+
 " Tab switches
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
@@ -28,29 +44,35 @@ nnoremap <leader>5 5gt
 nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 
-
-" coc.nvim shortcuts
-noremap <leader>oi :CocCommand editor.action.organizeImport<CR> " Java organizeImport
-
-" Hybrid Line Numbering- Relative in Normal, Number in Insert
 set number relativenumber
 
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+colorscheme tokyonight
 
-" NerdTree
-map <F2> :NERDTreeToggle<CR>
+" ----- EXTENSION CONFIGS --------
+let g:deoplete#enable_at_startup = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" Theme
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1 
-let g:gruvbox_italic=1
-let g:gruvbox_italicize_comments=1
-colorscheme gruvbox
-set background=dark " setting dark mode
+" tokyonight theme
+let g:tokyonight_style="night"
+
+" disable autocompletion, because we use deoplete for completion
+let g:jedi#completions_enabled = 0
+
+" open the go-to function in split, not another buffer
+let g:jedi#use_splits_not_buffers = "right" 
+
+" nerdtree toggle
+map <F4> :NERDTreeToggle<CR>
 
 " AutoPairs
 au FileType html let b:AutoPairs = AutoPairsDefine({'<!--' : '-->', '{%' : '%}'})
 
+" gruvbox
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1 
+let g:gruvbox_italic=1
+let g:gruvbox_italicize_comments=1
+set background=dark
+
+" :Black on save *.py
+autocmd BufWritePre *.py execute ':Black'

@@ -1,7 +1,7 @@
 
 #
 # /etc/fstab
-# Created by anaconda on Wed Mar 17 18:36:31 2021
+# Created by anaconda on Fri May  7 01:40:41 2021
 #
 # Accessible filesystems, by reference, are maintained under '/dev/disk/'.
 # See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
@@ -9,7 +9,8 @@
 # After editing this file, run 'systemctl daemon-reload' to update systemd
 # units generated from this file.
 #
-UUID=36731033-83e8-4735-8669-d5b0cf791bf0 /                       ext4    defaults        1 1
-UUID=15c6cba7-717d-4783-9e81-e6f36dfcd3e4 /boot                   ext4    defaults        1 2
+UUID=136f3a4c-a48e-48da-ae1b-9a0fdf780bc0 /                       ext4    defaults        1 1
+UUID=184a9104-c31f-42c0-9b8a-52612390e31e /boot                   ext4    defaults        1 2
+UUID=69a87f18-8050-412d-9cfe-e947d77bad10 none                    swap    defaults        0 0
 UUID=7AF4999FF4995DE7 /home/potato/strange ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
 UUID=DA16A02016A0001D /home/potato/multimedia ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0

@@ -5,8 +5,9 @@ bash_aliases=~/.bash_aliases
 fstab=/etc/fstab
 loop_timer=~/timer.sh
 init_vim=~/.config/nvim/init.vim
-i3config=~/.i3/config
+i3config=~/.config/i3/config
 i3status=~/.config/i3status/config
+compton=~/.config/compton.conf
 
 # destination
 dest=$(dirname "$0")
@@ -19,3 +20,4 @@ cp $loop_timer $dest
 cp $init_vim $dest
 cp $i3config "$dest/i3/"
 cp $i3status "$dest/i3status/"
+cp $compton $dest
