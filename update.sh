@@ -8,6 +8,7 @@ init_vim=~/.config/nvim/init.vim
 i3config=~/.config/i3/config
 i3status=~/.config/i3status/config
 compton=~/.config/compton.conf
+polybar=~/.config/polybar/
 
 # destination
 dest=$(dirname "$0")
@@ -21,3 +22,4 @@ cp $init_vim $dest
 cp $i3config "$dest/i3/"
 cp $i3status "$dest/i3status/"
 cp $compton $dest
+cp -r $polybar $dest
