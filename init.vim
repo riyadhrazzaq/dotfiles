@@ -22,6 +22,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'morhetz/gruvbox'
+Plug 'elkowar/yuck.vim'
 call plug#end()
 
 " ---- NVIM DEFAULTS ------
@@ -63,7 +64,7 @@ let g:jedi#completions_enabled = 0
 let g:jedi#use_splits_not_buffers = "right" 
 
 " nerdtree toggle
-map <F4> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
 
 " AutoPairs
 au FileType html let b:AutoPairs = AutoPairsDefine({'<!--' : '-->', '{%' : '%}'})

@@ -8,7 +8,10 @@ init_vim=~/.config/nvim/init.vim
 i3config=~/.config/i3/config
 i3status=~/.config/i3status/config
 compton=~/.config/compton.conf
+picom=~/.config/picom/
 polybar=~/.config/polybar/
+herbstluftwm=~/.config/herbstluftwm
+rofi=~/.config/rofi
 
 # destination
 dest=$(dirname "$0")
@@ -23,3 +26,5 @@ cp $i3config "$dest/i3/"
 cp $i3status "$dest/i3status/"
 cp $compton $dest
 cp -r $polybar $dest
+cp -r $herbstluftwm $dest
+cp -r $rofi $dest
