@@ -214,4 +214,4 @@ hc keybind $Mod+m set_layout max
 ~/.config/polybar/launch.sh --forest &> /dev/null
 picom &> /dev/null
 ~/.fehbg &> /dev/null
-xautolock -time 10 -locker i3lock -notify 10 -notifier dunstify
+xautolock -time 10 -locker 'i3lock -i ~/codes/external/polybar-themes/wallpapers/bg_13_2\ \(copy\ 1\).png' -notify 10 -notifier dunstify

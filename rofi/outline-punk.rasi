@@ -13,30 +13,35 @@ configuration {
 
     alternate-active-background: @color-mud-lighter;
     alternate-active-foreground: @foreground;
-    alternate-normal-background: @color-mud-lighter;
+    alternate-normal-background: @c-almostultra-violet;
     alternate-normal-foreground: @foreground;
     alternate-urgent-background: @color-mud-lighter;
     alternate-urgent-foreground: @foreground;
 
-    selected-active-background: @color-mud-lighter;
-    selected-active-foreground: @foreground;
-    selected-normal-background: @color-mud-lighter;
+    selected-active-background: @c-faded-orange;
+    selected-active-foreground: @c-faded-orange;
+    selected-normal-background: @c-faded-orange;
     selected-normal-foreground: @foreground;
     selected-urgent-background: #839BBC;
     selected-urgent-foreground: @foreground;
 
     background-color: @background;
-    background:     @c-screaming-green;
-    foreground:     @color-black;
-    border-color:   @color-black;
+    background:     @c-ultra-violet;
+    foreground:     @c-screaming-green;
+    border-color:   @c-screaming-green;
     spacing:        5;
-    font:           "Fira Mono Bold 11";
+    font:           "Fira Code Bold 12";
 
     color-mud: #9A9483;
     color-mud-lighter: #9A9483;
     color-mud-more-light: #C7BEA2;
     color-black: #000000;
-    c-screaming-green: #d95d39;
+    c-screaming-green: #8ac926;
+    c-blood-red: #9d0208;
+    c-faded-orange: #ee6c4d;
+    c-ultra-violet: #3a0ca3;
+    c-almostultra-violet: #480ca8;
+    c-notreally-white: #f0e6ef;
 
 
 }
@@ -47,6 +52,7 @@ configuration {
     width: 40%;
     border: 0;
     padding: 2.5ch;
+    border-radius: 10px;
 }
 
 #mainbox {
@@ -105,9 +111,10 @@ configuration {
 }
 
 #element.selected.normal {
-    background-color: @selected-normal-background;
-    border: 0px 4px 2px 0px;
-    border-color: @border-color;
+    border: 2px 2px 2px 2px;
+    border-color: #f0e6ef;
+    border-radius: 10px;
+    text-color: @c-notreally-white;
 }
 
 #element.selected.urgent {
@@ -117,12 +124,13 @@ configuration {
 
 #element.selected.active {
     background-color: @selected-active-background;
-    text-color: @selected-active-foreground;
+    text-color: @c-screaming-green;
 }
 
 #element.alternate.normal {
     background-color: @alternate-normal-background;
     text-color: @alternate-normal-foreground;
+    border-radius: 10px;
 }
 
 #element.alternate.urgent {
