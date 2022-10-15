@@ -14,3 +14,5 @@ UUID=184a9104-c31f-42c0-9b8a-52612390e31e /boot                   ext4    defaul
 UUID=69a87f18-8050-412d-9cfe-e947d77bad10 none                    swap    defaults        0 0
 UUID=7AF4999FF4995DE7 /home/potato/strange ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
 UUID=DA16A02016A0001D /home/potato/multimedia ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
+UUID=A6368FBA368F8A4F /home/potato/sohagh ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
+UUID=46A036C10E8AC7A9 /home/potato/images ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0

@@ -23,6 +23,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'morhetz/gruvbox'
 Plug 'elkowar/yuck.vim'
+Plug 'ap/vim-css-color'
 call plug#end()
 
 " ---- NVIM DEFAULTS ------

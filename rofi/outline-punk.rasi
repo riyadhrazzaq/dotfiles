@@ -1,7 +1,8 @@
 configuration {
-    show-icons:     true;
+    show-icons:     false;
     
 }
+
 
 * {
     active-background: @background;
@@ -26,22 +27,23 @@ configuration {
     selected-urgent-foreground: @foreground;
 
     background-color: @background;
-    background:     @c-ultra-violet;
+    background:     @c-blood-red;
     foreground:     @c-screaming-green;
     border-color:   @c-screaming-green;
     spacing:        5;
     font:           "Fira Code Bold 12";
 
-    color-mud: #9A9483;
-    color-mud-lighter: #9A9483;
-    color-mud-more-light: #C7BEA2;
-    color-black: #000000;
-    c-screaming-green: #8ac926;
-    c-blood-red: #9d0208;
-    c-faded-orange: #ee6c4d;
-    c-ultra-violet: #3a0ca3;
-    c-almostultra-violet: #480ca8;
-    c-notreally-white: #f0e6ef;
+
+    /*color-mud: #9A9483;*/
+    /*color-mud-lighter: #9A9483;*/
+    /*color-mud-more-light: #C7BEA2;*/
+    /*color-black: #000000;*/
+    /*c-screaming-green: #8ac926;*/
+    /*c-blood-red: #9d0208;*/
+    /*c-faded-orange: #ee6c4d;*/
+    /*c-ultra-violet: #3a0ca3;*/
+    /*c-almostultra-violet: #480ca8;*/
+    /*c-notreally-white: #f0e6ef;*/
 
 
 }
@@ -67,7 +69,7 @@ configuration {
 }
 
 #textbox {
-    text-color: @foreground;
+    text-color: @input-foreground;
 }
 
 #inputbar {
@@ -78,10 +80,11 @@ configuration {
     expand: false;
     str: ":";
     margin: 0px 0.3em 0em 0em;
-    text-color: @normal-foreground;
+    text-color: @foreground;
 }
 
 #listview {
+    text-color: @c-screaming-green;
     fixed-height: 0;
     border: 0px 0px 0px;
     border-color: @border-color;
@@ -97,7 +100,7 @@ configuration {
 
 #element.normal.normal {
     background-color: @normal-background;
-    text-color: @normal-foreground;
+    text-color: @c-screaming-green;
 }
 
 #element.normal.urgent {
@@ -113,8 +116,7 @@ configuration {
 #element.selected.normal {
     border: 2px 2px 2px 2px;
     border-color: #f0e6ef;
-    border-radius: 10px;
-    text-color: @c-notreally-white;
+    border-radius: 5px;
 }
 
 #element.selected.urgent {
@@ -124,7 +126,7 @@ configuration {
 
 #element.selected.active {
     background-color: @selected-active-background;
-    text-color: @c-screaming-green;
+    text-color: @c-notreally-white;
 }
 
 #element.alternate.normal {

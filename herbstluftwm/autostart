@@ -186,8 +186,18 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule fixedsize floating=on
+
 hc rule class='firefox' tag=1
+
 hc rule class='vlc' tag=3
+hc rule class='spotify' tag=3
+hc rule class='Spotify' tag=3
+
+hc rule class='qbittorrent' tag=4
+hc rule class='qBittorrent' tag=4
+
+hc rule class='Rawtherapee' tag=5
+hc rule class='rawtherapee' tag=5
 
 hc set tree_style '╾│ ├└╼─┐'
 
@@ -209,9 +219,15 @@ done
 
 hc keybind F3 spawn rofi -show combi
 hc keybind $Mod+m set_layout max
+hc keybind $Mod1+v spawn xfce4-popup-clipman
+hc keybind F4 exec xfce4-appfinder
+hc keybind Ctrl+$Mod+l spawn sh -c 'i3lock -i ~/codes/external/polybar-themes/wallpapers/bg_13_2\ \(copy\ 1\).png'
 
 # Autostart
-~/.config/polybar/launch.sh --forest &> /dev/null
-picom &> /dev/null
-~/.fehbg &> /dev/null
-xautolock -time 10 -locker 'i3lock -i ~/codes/external/polybar-themes/wallpapers/bg_13_2\ \(copy\ 1\).png' -notify 10 -notifier dunstify
+alsactl restore
+xfce4-clipman &
+nm-applet &
+~/.config/polybar/launch.sh --forest &
+picom &
+~/.fehbg &
+xautolock -time 10 -locker 'i3lock -i ~/codes/external/polybar-themes/wallpapers/bg_13_2\ \(copy\ 1\).png' -notify 10 -notifier dunstify &> /dev/null
