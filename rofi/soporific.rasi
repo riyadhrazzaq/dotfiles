@@ -1,6 +1,5 @@
 configuration {
-    show-icons:     true;
-    
+    show-icons:     false;
 }
 
 * {
@@ -9,7 +8,7 @@ configuration {
     foreground:     #e9ecef;
     window-border-color:   #189CEA;
     spacing:        5;
-    font:           "Hack 13";
+    font:           "Nunito 15";
     normal-text: #57AA23;
     selected-border: @window-border-color;
 }
