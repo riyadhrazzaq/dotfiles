@@ -29,6 +29,9 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 
+" colorschemes
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'rebelot/kanagawa.nvim'
 call plug#end()
 
 call glaive#Install()
@@ -62,7 +65,8 @@ set number relativenumber
 
 
 " active theme
-colorscheme tokyonight
+set background=dark
+colorscheme kanagawa
 
 " ----- EXTENSION CONFIGS --------
 let g:deoplete#enable_at_startup = 1
