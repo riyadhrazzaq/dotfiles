@@ -22,11 +22,17 @@ Plug 'davidhalter/jedi-vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'morhetz/gruvbox'
-Plug 'elkowar/yuck.vim'
 Plug 'ap/vim-css-color'
+
+ "Formatter
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+
 call plug#end()
 
-" ---- NVIM DEFAULTS ------
+call glaive#Install()
+
 "  copy-paste with ctrl+c, ctrl+v, cut with ctrl+x
 vnoremap <C-c> "+y
 vnoremap <C-v> "+p
@@ -46,14 +52,22 @@ nnoremap <leader>5 5gt
 nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 
+" show line number and relative
 set number relativenumber
 
+" tab
+:set tabstop=4
+:set shiftwidth=0
+:set expandtab
+
+
+" active theme
 colorscheme tokyonight
 
 " ----- EXTENSION CONFIGS --------
 let g:deoplete#enable_at_startup = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " tokyonight theme
 let g:tokyonight_style="night"
@@ -78,3 +92,25 @@ set background=dark
 
 " :Black on save *.py
 autocmd BufWritePre *.py execute ':Black'
+
+" UltiSnip
+let g:UltiSnipsEditSplit="vertical"
+
+" Formatter
+Glaive codefmt plugin[mappings]
+Glaive codefmt google_java_executable="java -jar /home/potato/programs/google-java-format-1.15.0-all-deps.jar"
+
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType rust AutoFormatBuffer rustfmt
+  autocmd FileType vue AutoFormatBuffer prettier
+  autocmd FileType swift AutoFormatBuffer swift-format
+augroup END

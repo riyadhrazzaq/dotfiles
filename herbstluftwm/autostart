@@ -60,6 +60,7 @@ hc keybind $Mod-Shift-l     shift right
 # create an empty frame at the specified direction
 hc keybind $Mod-u       split   bottom  0.5
 hc keybind $Mod-o       split   right   0.5
+
 # let the current frame explode into subframes
 picom -b
 hc keybind $Mod-Control-space split explode
@@ -167,6 +168,7 @@ for state in active urgent normal ; do
 done
 hc attr theme.tiling.outer_width 1
 hc attr theme.background_color '#141414'
+hc attr clients.focus.floating toggle
 
 hc set window_gap 0
 hc set frame_padding 0
@@ -183,6 +185,7 @@ hc rule floatplacement=smart
 # give focus to most common terminals
 #hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' focus=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule fixedsize floating=on
@@ -231,3 +234,4 @@ nm-applet &
 picom &
 ~/.fehbg &
 xautolock -time 10 -locker 'i3lock -i ~/codes/external/polybar-themes/wallpapers/bg_13_2\ \(copy\ 1\).png' -notify 10 -notifier dunstify &> /dev/null
+dropbox.py start
