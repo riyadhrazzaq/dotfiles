@@ -98,7 +98,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Formatter
 Glaive codefmt plugin[mappings]
-Glaive codefmt google_java_executable="java -jar /home/potato/programs/google-java-format-1.15.0-all-deps.jar"
+Glaive codefmt google_java_executable="java -jar /home/potato/programs/google-java-format-1.15.0-all-deps.jar --aosp"
 
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
