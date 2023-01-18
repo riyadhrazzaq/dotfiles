@@ -32,6 +32,7 @@ Plug 'google/vim-glaive'
 " colorschemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'rebelot/kanagawa.nvim'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 call glaive#Install()
@@ -42,6 +43,9 @@ vnoremap <C-v> "+p
 nnoremap <C-v> "+p
 vnoremap <d> "_d
 vnoremap <C-x> "+x
+
+" select all
+nnoremap <C-a> ggVG
 
 " disable highlights after exiting search
 set nohlsearch
@@ -102,7 +106,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Formatter
 Glaive codefmt plugin[mappings]
-Glaive codefmt google_java_executable="java -jar /home/potato/programs/google-java-format-1.15.0-all-deps.jar --aosp"
+Glaive codefmt google_java_executable="java -jar /home/potato/programs/google-java-format-1.15.0-all-deps.jar --aosp --skip-javadoc-formatting"
 
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
