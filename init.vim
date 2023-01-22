@@ -62,6 +62,9 @@ nnoremap <leader>7 7gt
 " show line number and relative
 set number relativenumber
 
+" enable folding
+set foldmethod=syntax
+
 " tab
 :set tabstop=4
 :set shiftwidth=0
@@ -122,3 +125,9 @@ augroup autoformat_settings
   autocmd FileType vue AutoFormatBuffer prettier
   autocmd FileType swift AutoFormatBuffer swift-format
 augroup END
+
+" AutoPairs
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+
+" FZF
+nnoremap <leader>o :FZF<CR>
