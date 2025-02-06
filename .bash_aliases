@@ -29,7 +29,7 @@ alias gf='git fetch'
 # Directory shortcuts
 alias home='cd ~'
 alias root='cd /'
-alias work='cd /scratch/mriyadh/ms-swift'
+alias work='cd ~/codes/llama-omni-basque'
 
 # Utility shortcuts
 alias mkdir='mkdir -pv'
@@ -77,17 +77,6 @@ alias df='df -h'
 alias du='du -h'
 alias free='free -h'
 
-# slurm
-alias sq='squeue -u mriyadh'
-alias activate='source venv/bin/activate'
-alias hitzbash='srun --account=hitz-exclusive --partition=hitz-exclusive --cpus-per-task=1 --mem=64GB --gres=gpu:1 --constraint=a100-sxm4 --pty bash'
-alias regbash='srun --qos=regular --cpus-per-task=1 --mem=64GB --gres=gpu:1 --constraint=a100-pcie --pty bash'
-alias hitz='squeue -p hitz-exclusive'
-alias jupyterserver='jupyter notebook --no-browser --ip 0.0.0.0 --port 8888'
-alias cpubash='srun --qos=serial --cpus-per-task=1 --mem=32GB --pty bash'
-alias hitzinfo='sinfo -p "hitz-exclusive" -N -O "NodeList","GresUsed","Gres","FreeMem","CPUs","CPUsState"'
-
 jobinfo() {
       scontrol show jobid -dd $1
 }
-

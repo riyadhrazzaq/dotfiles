@@ -1,0 +1,7 @@
+{
+    "markdown": {
+        "snippet": {
+            "cc:ie6": "<!--[if lte IE 6]>\n\t${child}|\n<![endif]-->"
+        }
+    }
+}
