@@ -1,7 +1,7 @@
 
 #
 # /etc/fstab
-# Created by anaconda on Fri May  7 01:40:41 2021
+# Created by anaconda on Fri Nov  8 10:13:18 2024
 #
 # Accessible filesystems, by reference, are maintained under '/dev/disk/'.
 # See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
@@ -9,10 +9,17 @@
 # After editing this file, run 'systemctl daemon-reload' to update systemd
 # units generated from this file.
 #
-UUID=136f3a4c-a48e-48da-ae1b-9a0fdf780bc0 /                       ext4    defaults        1 1
-UUID=184a9104-c31f-42c0-9b8a-52612390e31e /boot                   ext4    defaults        1 2
-UUID=69a87f18-8050-412d-9cfe-e947d77bad10 none                    swap    defaults        0 0
-UUID=7AF4999FF4995DE7 /home/potato/strange ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
-UUID=DA16A02016A0001D /home/potato/multimedia ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
-UUID=A6368FBA368F8A4F /home/potato/sohagh ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
-UUID=46A036C10E8AC7A9 /home/potato/images ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=1001,uid=1000    0   0
+LABEL=ROOT /                       xfs     defaults        0 0
+LABEL=BOOT /boot                   xfs     defaults        0 0
+LABEL=EFI          /boot/efi               vfat    defaults,uid=0,gid=0,umask=077,shortname=winnt 0 2
+LABEL=SWAP none                    swap    defaults        0 0
+molecules-02.sw.ehu.es:/molecules             /molecules               nfs nfsvers=3,bg,hard,intr,noacl 0 0
+skandal-01.sw.ehu.es:/skandal                 /skandal                 nfs bg,hard,intr,noacl 0 0
+158.227.173.45:/volume1/majorana01            /majorana       nfs defaults    0 0
+#//158.227.109.149/home /dipc/fernan/ehustorage cifs credentials=/dipc/fernan/.ehustorage_credentials,uid=fernan,gid=1300,file_mode=0660,dir_mode=0770,vers=3.0 0 0
+158.227.173.212:/dipc/administracion/admin/consumo/datos           /home/admin/usuarios         nfs lookupcache=none,defaults 0 0
+10.1.16.3:/data_1      /hitz_data           nfs      intr,defaults    0 0
+10.1.16.4:/XInorgBio   /XInorgBio           nfs      intr,defaults    0 0
+10.1.12.1:/scicomp /scicomp nfs defaults 0 0
+10.1.16.2:/data        /data           nfs defaults    0 0
+10.1.16.6:/hypercube    /hypercube      nfs     intr,defaults   0 0

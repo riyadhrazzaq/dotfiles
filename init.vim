@@ -1,133 +1,114 @@
-call plug#begin('~/.vim/plugged')
-" Make sure you use single quotes
+" Vim-Plug: Plugin manager setup
+call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'junegunn/vim-easy-align'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'jiangmiao/auto-pairs'
-Plug 'scrooloose/nerdcommenter'
+" Python development
+Plug 'psf/black', { 'branch': 'main' } " Autoformatter
+Plug 'nvim-treesitter/nvim-treesitter'  " Better syntax highlighting
+Plug 'jiangmiao/auto-pairs'   " Auto pair brackets and quotes
 Plug 'tpope/vim-surround'
-Plug 'psf/black', { 'branch': 'stable' }
-" only for code-jump
-Plug 'davidhalter/jedi-vim'
-Plug 'tmhedberg/SimpylFold'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'morhetz/gruvbox'
-Plug 'ap/vim-css-color'
 
- "Formatter
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
-Plug 'google/vim-glaive'
+Plug 'preservim/nerdcommenter'
 
-" colorschemes
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'rebelot/kanagawa.nvim'
+" theme
 Plug 'joshdick/onedark.vim'
+
+" File explorer
+Plug 'preservim/nerdtree'
+
+" Status line
+Plug 'vim-airline/vim-airline'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 call plug#end()
 
-call glaive#Install()
+" === Basic Settings ===
+syntax on
+set number          " Show line numbers
+set relativenumber  " Show relative line numbers
+set tabstop=4       " Tab width = 4 spaces
+set shiftwidth=4    " Auto-indent width = 4 spaces
+set expandtab       " Use spaces instead of tabs
+set autoindent      " Auto-indent new lines
 
-"  copy-paste with ctrl+c, ctrl+v, cut with ctrl+x
-vnoremap <C-c> "+y
-vnoremap <C-v> "+p
+" Keybindings
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <F8> :w<CR>:!python3 %<CR>
+
+" theme
+colorscheme onedark
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+
+" Map <leader>yf to copy the file path with line number to the clipboard
+nnoremap <leader>yf :let @+ = expand('%:p') . ':' . line('.')<CR>
+
+
+lua << EOF
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
+require('telescope').setup {
+    defaults = {
+        file_ignore_patterns = {
+          "node_modules",
+          "%.git",
+          "__pycache__",
+          "%.o", "%.a", "%.out", "%.class", "%.pyc", "%.pyo",
+          "tests"
+    }},
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }
+  }
+}
+
+require('telescope').load_extension('fzf')
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "python", "bash", "lua" },
+  highlight = { enable = true },
+incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<CR>", -- Start selection
+          node_incremental = "<CR>", -- Expand selection
+          scope_incremental = "<S-CR>", -- Expand to scope
+          node_decremental = "<BS>", -- Shrink selection
+        },
+      }
+}
+EOF
+
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevel=99
+
+" Map Ctrl+V to paste from the system clipboard
 nnoremap <C-v> "+p
-vnoremap <d> "_d
-vnoremap <C-x> "+x
+vnoremap <C-c> "+y
 
-" select all
-nnoremap <C-a> ggVG
-
-" disable highlights after exiting search
-set nohlsearch
-
-" Tab switches
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-
-" show line number and relative
-set number relativenumber
-
-" enable folding
-set foldmethod=syntax
-
-" tab
-:set tabstop=4
-:set shiftwidth=0
-:set expandtab
-
-
-" active theme
-set background=dark
-colorscheme kanagawa
-
-" ----- EXTENSION CONFIGS --------
-let g:deoplete#enable_at_startup = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" tokyonight theme
-let g:tokyonight_style="night"
-
-" disable autocompletion, because we use deoplete for completion
-let g:jedi#completions_enabled = 0
-
-" open the go-to function in split, not another buffer
-let g:jedi#use_splits_not_buffers = "right" 
-
-" nerdtree toggle
-map <F2> :NERDTreeToggle<CR>
-
-" AutoPairs
-au FileType html let b:AutoPairs = AutoPairsDefine({'<!--' : '-->', '{%' : '%}'})
-
-" gruvbox
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1 
-let g:gruvbox_italic=1
-let g:gruvbox_italicize_comments=1
-set background=dark
-
-" :Black on save *.py
-autocmd BufWritePre *.py execute ':Black'
-
-" UltiSnip
-let g:UltiSnipsEditSplit="vertical"
-
-" Formatter
-Glaive codefmt plugin[mappings]
-Glaive codefmt google_java_executable="java -jar /home/potato/programs/google-java-format-1.15.0-all-deps.jar --aosp --skip-javadoc-formatting"
-
-augroup autoformat_settings
-  autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
-  autocmd FileType dart AutoFormatBuffer dartfmt
-  autocmd FileType go AutoFormatBuffer gofmt
-  autocmd FileType gn AutoFormatBuffer gn
-  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
-  autocmd FileType java AutoFormatBuffer google-java-format
-  autocmd FileType python AutoFormatBuffer yapf
-  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
-  autocmd FileType rust AutoFormatBuffer rustfmt
-  autocmd FileType vue AutoFormatBuffer prettier
-  autocmd FileType swift AutoFormatBuffer swift-format
-augroup END
-
-" AutoPairs
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
-
-" FZF
-nnoremap <leader>o :FZF<CR>
+" Map visual mode <leader>fs to search selected text
+vnoremap <leader>fs y<cmd>Telescope live_grep search=<C-r>"<CR>
