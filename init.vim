@@ -53,7 +53,29 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " Map <leader>yf to copy the file path with line number to the clipboard
 nnoremap <leader>yf :let @+ = expand('%:p') . ':' . line('.')<CR>
 
+
+
 lua << EOF
+
+vim.api.nvim_set_keymap('n', '<C-c>', '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<C-v>', '"+p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-v>', '"+p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-v>', '<C-r>+', { noremap = true, silent = true })
+
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
+
 require('telescope').setup {
     defaults = {
         file_ignore_patterns = {
