@@ -53,6 +53,10 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " Map <leader>yf to copy the file path with line number to the clipboard
 nnoremap <leader>yf :let @+ = expand('%:p') . ':' . line('.')<CR>
 
+nnoremap <leader>q :q<CR>
+nnoremap <leader>s :w<CR>
+command! SlurmRun execute '!sbatch %'
+
 
 
 lua << EOF
@@ -136,6 +140,7 @@ require'nvim-treesitter.configs'.setup {
             -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
             ["]s"] = { query = "@local.scope", query_group = "locals", desc = "Next scope" },
             ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+            ["]b"] = "@block.outer",
           },
           goto_next_end = {
             ["]M"] = "@function.outer",
@@ -144,6 +149,7 @@ require'nvim-treesitter.configs'.setup {
           goto_previous_start = {
             ["[m"] = "@function.outer",
             ["[["] = "@class.outer",
+            ["[b"] = "@block.outer",
           },
           goto_previous_end = {
             ["[M"] = "@function.outer",
