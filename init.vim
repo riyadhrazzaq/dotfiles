@@ -9,6 +9,7 @@ Plug 'psf/black', { 'branch': 'main' } " Autoformatter
 Plug 'nvim-treesitter/nvim-treesitter'  " Better syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'jiangmiao/auto-pairs'   " Auto pair brackets and quotes
+Plug 'tpope/vim-surround'
 
 Plug 'preservim/nerdcommenter'
 
