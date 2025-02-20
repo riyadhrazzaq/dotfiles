@@ -26,6 +26,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+Plug 'ojroques/nvim-osc52'
+
 call plug#end()
 
 " === Basic Settings ===
@@ -58,28 +60,13 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>s :w<CR>
 command! SlurmRun execute '!sbatch %'
 
-
-
 lua << EOF
 
-vim.api.nvim_set_keymap('n', '<C-c>', '"+y', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+vim.keymap.set('v', '<leader>c', require('osc52').copy_visual)
 
-vim.api.nvim_set_keymap('n', '<C-v>', '"+p', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<C-v>', '"+p', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-v>', '<C-r>+', { noremap = true, silent = true })
 
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  },
-}
 
 require('telescope').setup {
     defaults = {
